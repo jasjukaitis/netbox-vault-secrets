@@ -15,7 +15,7 @@ const Secret: FunctionComponent<{
   getSecret: () => Promise<SecretData>;
   handleEdit: () => void;
   handleDelete: () => void;
-  handleCopy: () => void;
+  handleCopy: (id: string) => Promise<SecretData>;
 }> = ({ meta, getSecret, handleEdit, handleDelete, handleCopy }) => {
   const [isRevealed, setIsRevealed] = useState(false);
   const [data, setData] = useState<{
@@ -62,7 +62,9 @@ const Secret: FunctionComponent<{
         <a
           class={buttonClass("btn-primary")}
           title="Copy Secret"
-          onClick={handleCopy}
+          onClick={() => handleCopy(meta.id).then(({ data }) => {
+            navigator.clipboard.writeText(data.password);
+          })}
         >
           <i class="mdi mdi-content-copy"></i>
         </a>
@@ -76,7 +78,7 @@ export const List: FunctionComponent<{
   getSecret: (id: string) => Promise<SecretData>;
   handleEdit: (id: string) => void;
   handleDelete: (secret: SecretInfo) => void;
-  handleCopy: (secret: SecretInfo) => void;
+  handleCopy: (id: string) => Promise<SecretData>;
 }> = ({ secretList, getSecret, handleEdit, handleDelete, handleCopy }) => {
   if (secretList.length === 0) {
     return <div class="text-muted">None</div>;
@@ -92,7 +94,7 @@ export const List: FunctionComponent<{
             getSecret={() => getSecret(secret.id)}
             handleEdit={() => handleEdit(secret.id)}
             handleDelete={() => handleDelete(secret)}
-            handleCopy={() => handleCopy(secret)}
+            handleCopy={() => handleCopy(secret.id)}
           />
         ))}
       </tbody>
