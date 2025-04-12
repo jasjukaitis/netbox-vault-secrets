@@ -58,7 +58,7 @@ const Secret: FunctionComponent<{
           onClick={handleDelete}
         >
           <i class="mdi mdi-trash-can-outline"></i>
-        </a>
+        </a>{" "}
         <a
           class={buttonClass("btn-primary")}
           title="Copy Secret"
