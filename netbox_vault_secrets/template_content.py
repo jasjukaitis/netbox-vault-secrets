@@ -20,17 +20,17 @@ class VaultSecretInserter(PluginTemplateExtension):
 
 class VaultDeviceSecrets(VaultSecretInserter):
     vault_path_slug = "device"
-    model = "dcim.device"
+    models = ["dcim.device"]
 
 
 class VaultServiceSecrets(VaultSecretInserter):
     vault_path_slug = "service"
-    model = "ipam.service"
+    models = ["ipam.service"]
 
 
 class VaultVMSecrets(VaultSecretInserter):
     vault_path_slug = "vm"
-    model = "virtualization.virtualmachine"
+    models = ["virtualization.virtualmachine"]
 
 
 template_extensions = [VaultDeviceSecrets, VaultServiceSecrets, VaultVMSecrets]

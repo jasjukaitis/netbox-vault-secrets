@@ -2,7 +2,7 @@ from setuptools import find_packages, setup
 
 setup(
     name="netbox_vault_secrets",
-    version="0.3.0",
+    version="0.4.0",
     description="NetBox Plugin to manage vault secrets from Netbox",
     url="https://github.com/ffddorf/netbox-vault-secrets",
     author="Marcus Weiner",
